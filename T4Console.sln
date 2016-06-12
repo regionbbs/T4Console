@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Console", "T4Console\T4Console.csproj", "{23A76030-3F1D-4690-BBDC-1479690EF7E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T4Tools", "T4Tools\T4Tools.csproj", "{351EA40C-0705-4819-8CE0-D27EE13B9A97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23A76030-3F1D-4690-BBDC-1479690EF7E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23A76030-3F1D-4690-BBDC-1479690EF7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23A76030-3F1D-4690-BBDC-1479690EF7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23A76030-3F1D-4690-BBDC-1479690EF7E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{351EA40C-0705-4819-8CE0-D27EE13B9A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{351EA40C-0705-4819-8CE0-D27EE13B9A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{351EA40C-0705-4819-8CE0-D27EE13B9A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{351EA40C-0705-4819-8CE0-D27EE13B9A97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

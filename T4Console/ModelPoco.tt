@@ -1,0 +1,58 @@
+﻿<#@ template hostspecific="true" language="C#" debug="true" #>
+<#@ output extension="/" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="$(ProjectDir)\$(OutDir)\T4Tools.dll" #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Runtime.Remoting.Messaging" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="T4Console" #>
+<#@ import namespace="T4Tools" #>
+<#
+// T4 template reference: http://www.olegsych.com/2008/04/t4-template-design-standalone-template/
+// load table information from database.
+var namespaceName = CallContext.LogicalGetData("NamespaceHint");
+var tables = DbTableInspector.EnumerateDbTables();
+var typeFinder = new SqlDbTypeFinder();
+
+foreach (var table in tables) 
+{
+    var outputWriter = new T4MultipleOutputWriter(Host, GenerationEnvironment);
+#>
+using System;
+
+namespace <#= namespaceName #>
+{
+	/// <summary>
+	/// <#= table.Description #>
+	/// </summary>
+	public class <#=table.LegalEntityName #> 
+	{
+		<#
+		var columns = table.Columns;
+
+		foreach (var column in columns) {
+
+			Type clrType;
+
+			if (!typeFinder.FindByDbType(column.ColumnDbType, out clrType))
+					throw new InvalidOperationException("UnableToCastDbTypeToClrType");
+
+			string clrTypeFriendlyName = ClrTypeHelper.GetFriendlyNameFromClrType(clrType, column.IsNullable);
+		#>
+		///<summary>
+		/// <#= column.Description #>
+		///</summary>
+		public <#= clrTypeFriendlyName #> <#= column.LegalColumnName #> { get; set; }
+		<# } #>
+	}
+}
+<#
+    outputWriter.SaveOutput(table.LegalEntityName + ".cs");
+	GenerationEnvironment.Clear();
+}#>
+<#
+#>
